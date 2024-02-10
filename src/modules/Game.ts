@@ -144,7 +144,7 @@ export class Game {
   }
   
 
-  animateMeteorite(meteorite:iMeteorite) {
+  animateMeteorite(meteorite:iMeteorite):void {
     meteorite.addSize(0.2);
     if (meteorite.getSize() > 150) {
       let index:number = this.meteorites.findIndex((item) => item.getX() === meteorite.getX() && item.getY() === meteorite.getY());
@@ -154,12 +154,12 @@ export class Game {
     }
   }
 
-  animateBackGround() {
+  animateBackGround():void {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.drawImage(this.imgBackGround, 0, 0, this.canvas.width, this.canvas.height);
   }
 
-  brokenGlass() {
+  brokenGlass():void {
     if (this.isBrokenGlass) {
       let img:HTMLImageElement = new Image();
       img.src = './assets/images/glass.png';
@@ -167,7 +167,7 @@ export class Game {
     }
   }
 
-  animateAim() {
+  animateAim():void {
     this.aim.setX(this.aim.getX());
     this.aim.setY(this.aim.getY());
     if (!this.aimFlag) {
@@ -192,30 +192,30 @@ export class Game {
     }
   }
 
-  drawAllStars() {
+  drawAllStars():void {
     this.stars.forEach((star) => {
       this.animateStar(star);
     });
   }
 
-  drawAllMeteorites() {
+  drawAllMeteorites():void {
     this.meteorites.forEach((meteorite) => {
       this.animateMeteorite(meteorite);
     });
   }
 
-  generateStars() {
+  generateStars():void {
     let star:iStar = this.createRandomStar();
     this.stars.push(star);
   }
 
-  createRandomStar() {
+  createRandomStar():iStar {
     let trend:number = this.getRandomNumber(0, 360);
-    let { x, y } = this.calculatePointOnRing(this.canvas.width / 2, this.canvas.height / 2, 35, (trend * Math.PI) / 180);
+    let { x, y }:Record<string, number> = this.calculatePointOnRing(this.canvas.width / 2, this.canvas.height / 2, 35, (trend * Math.PI) / 180);
     return new Star(this.context, x, y, 1, 0);
   }
 
-  generateMeteorites() {
+  generateMeteorites():void {
     let size:number = 30;
     let count:number = this.getRandomNumber(1, 5);
 
@@ -232,8 +232,8 @@ export class Game {
     }
   }
 
-  handleKeyDown(event:KeyboardEvent) {
-    let keyCode = event.key;
+  handleKeyDown(event:KeyboardEvent):void {
+    let keyCode:string = event.key;
     if (event.key === 'Enter' && this.meteorites.length > 0) {
       const aimX:number = this.aim.getX();
       const aimY:number = this.aim.getY();
@@ -270,7 +270,7 @@ export class Game {
     }
   }
 
-  handleKeyUp(event:KeyboardEvent) {
+  handleKeyUp(event:KeyboardEvent):void {
     let keyCode:string = event.key;
     switch (keyCode) {
       case 'ArrowRight':
@@ -287,15 +287,15 @@ export class Game {
         break;
     }
   }
-  handleEnterAim(event: MouseEvent) {
-    const mouseX = event.clientX - this.canvas.getBoundingClientRect().left;
-    const mouseY = event.clientY - this.canvas.getBoundingClientRect().top;
+  handleEnterAim(event: MouseEvent):void {
+    const mouseX:number = event.clientX - this.canvas.getBoundingClientRect().left;
+    const mouseY:number = event.clientY - this.canvas.getBoundingClientRect().top;
 
-    const aimX = this.aim.getX();
-    const aimY = this.aim.getY();
-    const aimRadius = 40;
+    const aimX:number = this.aim.getX();
+    const aimY:number = this.aim.getY();
+    const aimRadius:number = 40;
 
-    const distance = Math.sqrt((mouseX - aimX) ** 2 + (mouseY - aimY) ** 2);
+    const distance:number = Math.sqrt((mouseX - aimX) ** 2 + (mouseY - aimY) ** 2);
     if (distance <= aimRadius) {
       if (!this.aimFlag){
         this.aimFlag = true
@@ -307,7 +307,7 @@ export class Game {
     }
   }
 
-  animate() {
+  animate():void {
     this.animateBackGround();
     this.drawAllStars();
     this.drawAllMeteorites();
