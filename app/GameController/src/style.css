@@ -1,0 +1,9 @@
+.cont{
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+canvas#canvas{
+    border: 1px solid red;
+}

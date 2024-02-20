@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>simple_table</title><link rel="stylesheet" href="./style.css"><script src="StarWars.js"></script></head><body><div class="cont"><canvas id="canvas" height="500" width="500"></canvas></div>
+<script src="./meteoriteLayer.js"></script>
+<script src="./aimLayer.js"></script>
+
+<script>let game = new StarWars.GameController('canvas')
+  game.addPlugin(new MeteoriteLayer)
+  game.addPlugin(new AimLayer)
+
+  // let array = [
+  //   { type: "circle", radius: 100, x: 200, y: 200, color: "red" },
+  //   { type: "rect", width: 50, height: 70, x: 50, y: 200, color: "blue" },
+  //   { type: "circle", radius: 80, x: 300, y: 100, color: "green" },
+  // ]
+  // let frame$ = new StarWars.Observable()
+  // function renderAnimate() {
+  //   game.context.clearRect(0,0,game.canvas.width, game.canvas.height)
+  //   // проходимя по списку плагинов и каждому триегрим observer для рендера
+  //   game.renderLayer(array);
+  //   requestAnimationFrame(renderAnimate);
+  //   frame$.next()
+  // }
+  // frame$.subscribe(()=>{
+  //   array[0].x += 0.2
+  // })
+  // renderAnimate()</script></body></html>

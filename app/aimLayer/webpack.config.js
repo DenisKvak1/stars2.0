@@ -1,18 +1,14 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const PROJECT_NAME = "StarWars";
+const PROJECT_NAME = "aimLayer";
 
 module.exports = {
     entry: path.resolve(__dirname, 'src'),
 
     output: {
         filename: `${PROJECT_NAME}.js`,
-        path: path.resolve(path.join(__dirname, `./builds/${PROJECT_NAME}`)),
-        libraryTarget: 'umd',
-        library: `${PROJECT_NAME}`,
-        globalObject: 'this'
+        path: path.resolve(path.join(__dirname, `../..//builds/${PROJECT_NAME}`)),
     },
     devServer: {
         static: path.resolve(__dirname, `./src`),
@@ -40,11 +36,6 @@ module.exports = {
     },
 
     plugins: [
-        new ForkTsCheckerWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            inject: 'head',
-            scriptLoading: 'blocking'
-        })
+        new ForkTsCheckerWebpackPlugin()
     ]
 };

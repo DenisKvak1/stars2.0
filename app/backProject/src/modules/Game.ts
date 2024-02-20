@@ -243,7 +243,7 @@ export class Game {
         const x:number = meteorite.getX()
         const y:number = meteorite.getY()
         const size:number = meteorite.getSize()
-        const closestX:number = Math.max(x - size / 2, Math.min(aimX, x + size / 2));
+        const closestX:number = Math.max( x - size / 2, Math.min(aimX, x + size / 2));
         const closestY:number = Math.max(y - size / 2, Math.min(aimY, y + size / 2));
         const distance:number = Math.sqrt((aimX - closestX) ** 2 + (aimY - closestY) ** 2);
         return distance <= aimRadius;
