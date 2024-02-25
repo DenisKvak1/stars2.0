@@ -7,6 +7,7 @@ import {
   PLUGIN_STATE
 } from "../../../env/types";
 import { Observable } from "../../../env/helpers/observable";
+import { fpsTimer } from "../../../env/helpers/fpsTimer";
 
 export class brokenGlass implements iGlassBrokenLayer {
   animate$: iObservable<layerData>;
@@ -41,6 +42,9 @@ export class brokenGlass implements iGlassBrokenLayer {
       const meteoritesPlugin = this.controller.getPlugin("meteorites").plugin as iMeteoriteLayer;
       meteoritesPlugin.hit.subscribe(() => {
         this.isBroken = true;
+        fpsTimer(this.controller.frame$, this.controller.targetFps$.getValue(), 3000, ()=>{
+          this.isBroken = false
+        })
       });
     };
 
